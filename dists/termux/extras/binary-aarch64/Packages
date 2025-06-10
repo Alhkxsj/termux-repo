@@ -1,0 +1,14 @@
+Package: pinkshell
+Version: 1.0-1
+Architecture: all
+Maintainer: 快手啊泠好困想睡觉 <email@example.com>
+Filename: ./pkgs/pinkshell_1.0-1_all.deb
+Size: 9012
+MD5sum: b3b5212131be58d0ecef761d2a7b746f
+SHA1: ba864e4b5de5568d6590a3dce580917b414e00ef
+SHA256: fdd20abaed17af7ace5a40470a28973f394912aabc07743152c7ec1287f118e6
+Section: utils
+Description: 少女终端工具箱 - 粉色主题的Termux实用工具集
+ 专为Termux设计的粉色主题工具箱，提供系统管理、
+ 实用工具和个性化体验，让终端操作更优雅高效。
+

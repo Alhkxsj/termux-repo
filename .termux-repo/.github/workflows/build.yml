@@ -1,0 +1,28 @@
+name: Termux Repo Auto Index
+
+on:
+  push:
+    paths:
+      - '*.deb'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Generate Packages and Packages.gz
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y dpkg-dev
+        dpkg-scanpackages . /dev/null > Packages
+        gzip -k -f Packages
+
+    - name: Push result back to GitHub
+      run: |
+        git config --global user.email "fan343908@qq.com"
+        git config --global user.name "Alhkxsj Bot"
+        git add Packages Packages.gz
+        git commit -m "自动更新 Packages"
+        git push

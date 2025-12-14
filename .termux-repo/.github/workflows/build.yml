@@ -2,27 +2,50 @@ name: Termux Repo Auto Index
 
 on:
   push:
+    branches: [ main ]
     paths:
-      - '*.deb'
+      - 'pkgs/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
-    - name: Generate Packages and Packages.gz
+    - name: Setup APT tools
       run: |
         sudo apt-get update
         sudo apt-get install -y dpkg-dev
-        dpkg-scanpackages . /dev/null > Packages
-        gzip -k -f Packages
 
-    - name: Push result back to GitHub
+    - name: Generate Packages for all architectures
       run: |
-        git config --global user.email "fan343908@qq.com"
-        git config --global user.name "Alhkxsj Bot"
-        git add Packages Packages.gz
-        git commit -m "自动更新 Packages"
-        git push
+        # Generate Packages file for all architectures
+        for arch_dir in dists/termux/extras/binary-*; do
+          if [ -d "$arch_dir" ]; then
+            echo "Processing $arch_dir"
+            dpkg-scanpackages pkgs /dev/null > "$arch_dir/Packages"
+            gzip -k -f "$arch_dir/Packages"
+            # Update the Release files with current date and file info
+            echo "Archive: termux" > "$arch_dir/Release"
+            echo "Component: extras" >> "$arch_dir/Release"
+            echo "Origin: alhkxsj" >> "$arch_dir/Release"
+            echo "Label: Termux Third-Party" >> "$arch_dir/Release"
+            echo "Architecture: $(basename "$arch_dir" | sed 's/binary-//')" >> "$arch_dir/Release"
+          fi
+        done
+
+    - name: Configure Git
+      run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+
+    - name: Commit and push changes
+      run: |
+        git add .
+        if [[ -n $(git status --porcelain) ]]; then
+          git commit -m "Auto-update Packages and Release files [skip ci]"
+          git push
+        else
+          echo "No changes to commit"
+        fi

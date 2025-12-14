@@ -1,14 +1,14 @@
-Package: pinkshell
-Version: 1.0-1
-Architecture: all
-Maintainer: 快手啊泠好困想睡觉 <email@example.com>
-Filename: ./pkgs/pinkshell_1.0-1_all.deb
-Size: 9012
-MD5sum: b3b5212131be58d0ecef761d2a7b746f
-SHA1: ba864e4b5de5568d6590a3dce580917b414e00ef
-SHA256: fdd20abaed17af7ace5a40470a28973f394912aabc07743152c7ec1287f118e6
-Section: utils
-Description: 少女终端工具箱 - 粉色主题的Termux实用工具集
- 专为Termux设计的粉色主题工具箱，提供系统管理、
- 实用工具和个性化体验，让终端操作更优雅高效。
+Package: https-server
+Version: 1.0.0
+Architecture: aarch64
+Maintainer: @termux
+Filename: pkgs/https-server_1.1.0_aarch64.deb
+Size: 5374832
+MD5sum: 9ea6a4e5a182695caed6fa4b29328f3b
+SHA1: af41aae2551312fe9c169c1df992d07aef76fb9a
+SHA256: f50899de680755f4d08868d8876cbb9a31ab4fb1c215d28a39090bfdfffaa26f
+Homepage: https://github.com/Alhkxsj/https-server
+Description: A simple zero-configuration HTTPS file server
+ A simple and easy-to-use HTTPS file server with automatic certificate generation,
+ suitable for local development and file sharing on Android devices.
 

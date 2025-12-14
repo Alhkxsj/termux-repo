@@ -1,0 +1,17 @@
+{
+  "name": "阿泠 Termux 软件源",
+  "description": "私人 Termux 软件仓库",
+  "url": "https://alhkxsj.github.io/termux-repo/",
+  "distribution": "termux",
+  "component": "extras",
+  "architectures": [
+    "aarch64",
+    "all"
+  ],
+  "maintainer": "阿泠",
+  "email": "fan343908@qq.com",
+  "update_script": "update_repo.sh",
+  "packages_dir": "pkgs",
+  "dists_dir": "dists",
+  "supported_packages": []
+}
